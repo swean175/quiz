@@ -1,0 +1,129 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+
+
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.questions{
+  background-color: red;
+  color: black;
+}
+
+.answers{
+  display: flex;
+  background-color: #646cff;
+  color: white;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.single-ans{
+  background-color: black;
+  color:white;
+  padding: 0.5em;
+  border: white solid 2px;
+  border-radius: 0.2em;
+  margin: 1em;
+  cursor: pointer;
+}
+
+.single-ans-chosen{
+  background-color: green;
+  color:black;
+  padding: 0.5em;
+  border: white solid 2px;
+  border-radius: 0.2em;
+  margin: 1em;
+  user-select: none;
+  cursor: none;
+}
+
+.check-answers{
+  background-color: aqua;
+  color: black;
+  font-size: 1.4rem;
+  font-weight: 600;
+  padding: 0.5em;
+  margin: 2em;
+  border:solid white 2px;
+  border-radius: 0.3em;
+}
+
+.check-answers:hover{
+
+  box-shadow:rgb(2, 138, 138) 0 0 8px inset ;
+  border:solid rgba(255, 255, 255, 0.445) 2px;
+  cursor: pointer;
+  color: #1a1a1a;
+}
+
+.quiz{
+  background-color:#e6219a;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
