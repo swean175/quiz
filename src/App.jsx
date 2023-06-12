@@ -1,49 +1,107 @@
-import { useState } from 'react'
-import React, {  useEffect } from "react";
+import React, { useEffect, useRef, useState } from 'react'
 import Start from './components/start'
 import Quiz from './components/quiz'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { nanoid } from 'nanoid'
+
+
+let checkedAnswers = []
+let rows = []
 
 function App() {
-  const [start, setStart] = useState(false)
+
+
+const [clicked, setClicked] = useState("")
   const [rounds, setRounds] = useState(0)
+  const [rend, setRend] = useState(false)
+   const [start, setStart] = useState(false)
+   const [questions, setQuestions] = useState([])
 
- 
-  let questions = []
 
- 
-    fetch ('https://opentdb.com/api.php?amount=10')
+  let quizData
+// let pytania = useRef([{qestion:"pyt1", incorrect_answers:["cos1", "cos2", "cos3"], id:"1", isHeld:false},{qestion:"pyt2", incorrect_answers:["cos1", "cos2", "cos3"], id:"2", isHeld:false},{qestion:"pyt3", incorrect_answers:["cos1", "cos2", "cos3"], id:"3", isHeld:false},{qestion:"pyt4", incorrect_answers:["cos1", "cos2", "cos3"], id:"4", isHeld:false},{qestion:"pyt5", incorrect_answers:["cos1", "cos2", "cos3"], id:"5", isHeld:false}])
+
+
+  
+
+
+
+
+
+ useEffect(()=>{
+ fetch ('https://opentdb.com/api.php?amount=10')
     .then ((res)=>res.json())
-    .then ((data) => getQuestions(data.results))
+    .then ((data) => setQuestions(old => data.results))
 
-  
+  return ()=>{
+    setQuestions([])
+  }
 
-function getQuestions(data){
-  for (let i = 0; i < data.length; i++){
-   questions.push(data[i])
-   }
+ },[rounds])
+   
 
-   return questions
+
+
+
+
+quizData =  questions.map(que => 
+ (
+  <Quiz 
+  question = {que.question}
+  answers = {que.incorrect_answers}
+  correct = {que.correct_answer}
+  key = {que.key}
+  id = {questions.indexOf(que)}
+  // isHeld={que.isHeld}
+  checked={checkedAnswers}
+  clicked={clicked}
+  setclicked={(e)=>handleClick(e)}
+  />
+)) 
+
+
+
+
+function handleClick(e){
+  let checked = e.target.id
+  let r = checked.charAt(0)
+ 
+  if (rows.find(it => it === r)){  
+    console.log('not found')
+ 
+} else {  
+   rows.push(r)
+  checkedAnswers.push(checked)
 }
+ 
+  console.log(checkedAnswers)
+  // setClicked(checked)
+setRend(old => !old)
   
-console.log(questions)
+}
+
+
+function handleRounds(){
+  setRounds((old)=>old + 1)
+}
+
+
+// function addClicked(){
+//   checkedAnswers.push(clicked)
+// console.log(checkedAnswers)
+// }
 
   return (
       <div className='app'>
-      {
-        start ?
-        <Quiz 
-        quiz = {questions}
-        setround = {()=>setRound(old=>old + 1)}
-        />
-        :
-       <Start 
+        {start && (<h1 id="begin">Let's begin</h1>)}
+     { start && quizData }
+       {!start && <Start 
        start={start}
-        setstart={()=>setStart(true)}
-       />
-      }
-      <p>jajo</p>
+       setrend={()=>setStart(old=>!old)}
+       setstart={()=>setStart(true)}
+       />}
+      
+     {start && (<div className='check-answers' onClick={handleRounds}>Check answers</div>) }
 
     </div>
   )

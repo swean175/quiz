@@ -1,36 +1,35 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+
 
 
 
 export default function Quiz(props){
-// console.log(props.quiz)
-  
-let fill = []  
-const [marked, setMarked] = useState(false) 
+
+let checked = props.checked
 
 
-    for (let i = 0; i < props.quiz.length ; i++){
-    let arr = props.quiz
-    fill.push(dane(arr[i].question, arr[i].incorrect_answers, marked))
-}
-
-// function handleClick(){
-// setMarked(old=>{!old})
-
-// }
-
- function dane(q,b,m){ 
-   let a = b.map(item => {
+function dane(){ 
+   
+    let num = 0 
+    let a = props.answers
+    // let ran = Math.floor(Match.random() * a.length)
+    // a.splice(ran,0,props.correct)
+    a.map(item => {
+        
+    let elementId = `${props.id}-${num}`
+    num++
     return (
-    <button type="button" className={!m?"single-ans":"single-ans-chosen"} > {item} </button> 
+    <button type="button" className={checked.find(el => el == elementId)?"single-ans-chosen":"single-ans"} id={elementId} onClick={props.setclicked}> {item} </button> 
     ) 
    })
+ 
+
 
     return (
         <>
     
   <div className="questions"><h1>
- {q}</h1>
+ {props.question}</h1>
  </div>
  <div className="answers">
   {a}
@@ -44,9 +43,9 @@ const [marked, setMarked] = useState(false)
 
     return (
         <div className='quiz'>
-            <h1>Let's begin now</h1>
-         
-<div className='check-answers'>Check answers</div>
+           
+       {dane()}
+
         </div>
     )
 }
