@@ -8,6 +8,7 @@ import { nanoid } from 'nanoid'
 let checkedAnswers = []
 let rows = []
 
+
 function App() {
 
 
@@ -22,42 +23,52 @@ const [clicked, setClicked] = useState("")
 // let pytania = useRef([{qestion:"pyt1", incorrect_answers:["cos1", "cos2", "cos3"], id:"1", isHeld:false},{qestion:"pyt2", incorrect_answers:["cos1", "cos2", "cos3"], id:"2", isHeld:false},{qestion:"pyt3", incorrect_answers:["cos1", "cos2", "cos3"], id:"3", isHeld:false},{qestion:"pyt4", incorrect_answers:["cos1", "cos2", "cos3"], id:"4", isHeld:false},{qestion:"pyt5", incorrect_answers:["cos1", "cos2", "cos3"], id:"5", isHeld:false}])
 
 
-  
-
-
-
-
 
  useEffect(()=>{
  fetch ('https://opentdb.com/api.php?amount=10')
     .then ((res)=>res.json())
-    .then ((data) => setQuestions(old => data.results))
-
+    .then ((data) => setQuestions(sortQuestions(data.results)))
   return ()=>{
     setQuestions([])
   }
-
- },[rounds])
+}, [rounds])
    
 
 
+function sortQuestions(data){
+  let testArr = []
+  let test = []
+  test = data
+  testArr = test.map((item) => {
+    let rand = Math.floor(Math.random()*item.incorrect_answers.length)-1
+    let addCorrect = item.incorrect_answers
+    addCorrect.splice(rand,0,item.correct_answer)
+    // console.log("addcorrect " + addCorrect)
+    return {
+      ...item,
+    incorrect_answers: addCorrect,
+  }
+})
+return testArr
+}
 
 
 
-quizData =  questions.map(que => 
- (
-  <Quiz 
-  question = {que.question}
-  answers = {que.incorrect_answers}
-  correct = {que.correct_answer}
-  key = {que.key}
-  id = {questions.indexOf(que)}
-  // isHeld={que.isHeld}
-  checked={checkedAnswers}
-  clicked={clicked}
-  setclicked={(e)=>handleClick(e)}
-  />
-)) 
+
+quizData = questions.map(que => 
+  (
+   <Quiz 
+   question = {que.question}
+   answers = {que.incorrect_answers}
+   correct = {que.correct_answer}
+   key = {que.key}
+   id = {questions.indexOf(que)}
+   // isHeld={que.isHeld}
+   checked={checkedAnswers}
+   clicked={clicked}
+   setclicked={(e)=>handleClick(e)}
+   />
+ )) 
 
 
 
@@ -74,8 +85,6 @@ function handleClick(e){
   checkedAnswers.push(checked)
 }
  
-  console.log(checkedAnswers)
-  // setClicked(checked)
 setRend(old => !old)
   
 }
@@ -86,10 +95,6 @@ function handleRounds(){
 }
 
 
-// function addClicked(){
-//   checkedAnswers.push(clicked)
-// console.log(checkedAnswers)
-// }
 
   return (
       <div className='app'>
@@ -101,7 +106,7 @@ function handleRounds(){
        setstart={()=>setStart(true)}
        />}
       
-     {start && (<div className='check-answers' onClick={handleRounds}>Check answers</div>) }
+     {start && (<div className='check-answers-btn' onClick={handleRounds}>Check answers</div>) }
 
     </div>
   )

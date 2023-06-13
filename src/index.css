@@ -69,9 +69,10 @@ button:focus-visible {
   color: white;
   flex-wrap: wrap;
   justify-content: center;
+  gap:2em;
 }
 
-.single-ans{
+.single-ans-btn{
   background-color: black;
   color:white;
   padding: 0.5em;
@@ -81,7 +82,7 @@ button:focus-visible {
   cursor: pointer;
 }
 
-.single-ans-chosen{
+.single-ans-chosen-btn{
   background-color: green;
   color:black;
   padding: 0.5em;
@@ -92,7 +93,7 @@ button:focus-visible {
   cursor: none;
 }
 
-.check-answers{
+.check-answers-btn{
   background-color: aqua;
   color: black;
   font-size: 1.4rem;
@@ -103,7 +104,7 @@ button:focus-visible {
   border-radius: 0.3em;
 }
 
-.check-answers:hover{
+.check-answers-btn:hover{
 
   box-shadow:rgb(2, 138, 138) 0 0 8px inset ;
   border:solid rgba(255, 255, 255, 0.445) 2px;

@@ -4,25 +4,28 @@ import { useState } from 'react'
 
 
 export default function Quiz(props){
-
+console.log("props from quiz " + props.answers)
 let checked = props.checked
 
 
 function dane(){ 
-   
+    
     let num = 0 
     let a = props.answers
-    // let ran = Math.floor(Match.random() * a.length)
-    // a.splice(ran,0,props.correct)
-    a.map(item => {
-        
+    // let r = Math.floor(Math.random()*a.length)-1
+ 
+    // a.splice(r,0,props.correct)
+   
+  
+ 
+    let q = a.map(item => {
     let elementId = `${props.id}-${num}`
     num++
     return (
-    <button type="button" className={checked.find(el => el == elementId)?"single-ans-chosen":"single-ans"} id={elementId} onClick={props.setclicked}> {item} </button> 
+    <button type="button" className={checked.find(el => el === elementId)?"single-ans-chosen-btn":"single-ans-btn"} id={elementId} onClick={props.setclicked}> {item} </button> 
     ) 
    })
- 
+
 
 
     return (
@@ -32,7 +35,7 @@ function dane(){
  {props.question}</h1>
  </div>
  <div className="answers">
-  {a}
+  {q}
   </div>
   <hr></hr>
   </>
