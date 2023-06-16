@@ -116,6 +116,39 @@ button:focus-visible {
   background-color:#e6219a;
 }
 
+.modal{
+  position: fixed;
+  transform: translateX(20vw) translateY(40%);
+  display: flex;
+  padding: 2em;
+  background-color: white;
+  box-shadow: #1a1a1a 0 0 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 250px;
+
+}
+
+.invisible{
+  display: none;
+}
+
+ol{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+}
+
+.corect{
+  color:green;
+}
+
+.incorect{
+  color:red;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

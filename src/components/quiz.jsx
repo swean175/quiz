@@ -2,9 +2,8 @@ import { useState } from 'react'
 
 
 
-
 export default function Quiz(props){
-console.log("props from quiz " + props.answers)
+// console.log("props from quiz " + props.answers)
 let checked = props.checked
 
 
@@ -12,13 +11,8 @@ function dane(){
     
     let num = 0 
     let a = props.answers
-    // let r = Math.floor(Math.random()*a.length)-1
- 
-    // a.splice(r,0,props.correct)
-   
-  
- 
     let q = a.map(item => {
+
     let elementId = `${props.id}-${num}`
     num++
     return (
@@ -27,12 +21,11 @@ function dane(){
    })
 
 
-
     return (
         <>
     
   <div className="questions"><h1>
- {props.question}</h1>
+ {"#"+(props.id+1)+" "+props.question}</h1>
  </div>
  <div className="answers">
   {q}
