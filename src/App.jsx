@@ -52,7 +52,7 @@ function sortQuestions(data){
     let addCorrect = item.incorrect_answers
     addCorrect.splice(rand,0,item.correct_answer)
     correctAnswersIndex.push(rowIndex+"-"+rand)
-    console.log(rand +"-" + findCorrect)
+
     return {
       ...item,
     incorrect_answers: addCorrect,
@@ -145,7 +145,7 @@ function handleRounds(){
 <li className={score[9]?"corect":"incorect"}>{score[9]?"Correct":"Wrong"}</li>
 </ol>
 <h3>Your Score {res} / 10 </h3>
-<button type='button' onClick={handleRounds}>Next</button>
+<button type='button' onClick={handleRounds}> Next</button>
     </div>
 
         {start && (<h1 id="begin">Let's begin</h1>)}
