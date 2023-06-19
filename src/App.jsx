@@ -16,8 +16,8 @@ let res = 0
 function App() {
 
 
-const [clicked, setClicked] = useState("")
-  const [rounds, setRounds] = useState(0)
+// const [clicked, setClicked] = useState("")
+  const [rounds, setRounds] = useState(1)
   const [rend, setRend] = useState(false)
    const [start, setStart] = useState(false)
    const [questions, setQuestions] = useState([])
@@ -72,7 +72,7 @@ quizData = questions.map(que =>
    key = {que.key}
    id = {questions.indexOf(que)}
    checked={checkedAnswers}
-   clicked={clicked}
+  //  clicked={clicked}
    setclicked={(e)=>handleClick(e)}
    />
  )) 
@@ -119,9 +119,13 @@ score.map((it) => {
 
 function handleRounds(){
  
-  setRounds((old)=>old + 1)
+  setRounds(old=> old + 1)
   modal = false
   setRend(old => !old)
+  res = 0
+  checkedAnswers = []
+  rows = []
+  score = []
 }
 
 
@@ -148,7 +152,7 @@ function handleRounds(){
 <button type='button' onClick={handleRounds}> Next</button>
     </div>
 
-        {start && (<h1 id="begin">Let's begin</h1>)}
+        {start && (<h1 id="begin">Round {rounds} let's begin</h1>)}
      { start && quizData }
        {!start && <Start 
        start={start}
