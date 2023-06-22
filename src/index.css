@@ -73,7 +73,7 @@ button:focus-visible {
 }
 
 .single-ans-btn{
-  background-color: black;
+  background-color: #646cff;
   color:white;
   padding: 0.5em;
   border: white solid 2px;
@@ -83,7 +83,7 @@ button:focus-visible {
 }
 
 .single-ans-chosen-btn{
-  background-color: green;
+  background-color: #D6DBF5;
   color:black;
   padding: 0.5em;
   border: white solid 2px;
@@ -93,9 +93,10 @@ button:focus-visible {
   cursor: none;
 }
 
+
 .check-answers-btn{
   background-color: aqua;
-  color: black;
+  color: #4D5B9E;
   font-size: 1.4rem;
   font-weight: 600;
   padding: 0.5em;

@@ -1,10 +1,26 @@
 import { useState } from 'react'
+import {decode} from 'html-entities'
 
 
 
 export default function Quiz(props){
 // console.log("props from quiz " + props.answers)
 let checked = props.checked
+let correctArr = props.correct
+
+
+
+
+function disp(elementId){
+    // Checks wich class should be added to answers buttons
+    
+if (props.modal) {
+  return checked.find(el => el === elementId) && correctArr.find(el => el === elementId)?"single-ans-btn corect": checked.find(el => el === elementId)? "single-ans-btn incorect": "single-ans-btn"  
+ } else {
+   return checked.find(el => el === elementId)?"single-ans-chosen-btn":"single-ans-btn" 
+    }
+}
+
 
 
 function dane(){ 
@@ -15,8 +31,9 @@ function dane(){
 
     let elementId = `${props.id}-${num}`
     num++
+
     return (
-    <button type="button" className={checked.find(el => el === elementId)?"single-ans-chosen-btn":"single-ans-btn"} id={elementId} onClick={props.setclicked}> {item} </button> 
+    <button type="button" className={disp(elementId)} id={elementId} onClick={props.setclicked}> {decode(item)} </button> 
     ) 
    })
 
@@ -25,7 +42,7 @@ function dane(){
         <>
     
   <div className="questions"><h1>
- {"#"+(props.id+1)+" "+props.question}</h1>
+ {"#"+(props.id+1)+" "+decode(props.question)}</h1>
  </div>
  <div className="answers">
   {q}

@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Start from './components/start'
 import Quiz from './components/quiz'
+import {decode} from 'html-entities'
 import './App.css'
-import { nanoid } from 'nanoid'
+
 
 
 let checkedAnswers = []
@@ -72,6 +73,8 @@ quizData = questions.map(que =>
    key = {que.key}
    id = {questions.indexOf(que)}
    checked={checkedAnswers}
+   correct={correctAnswersIndex}
+   modal={modal}
   //  clicked={clicked}
    setclicked={(e)=>handleClick(e)}
    />
