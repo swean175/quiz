@@ -3,6 +3,7 @@
   line-height: 1.5;
   font-weight: 400;
 
+
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
@@ -40,7 +41,7 @@ h1 {
 }
 
 button {
-  border-radius: 8px;
+  border-radius: 2em;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
@@ -58,14 +59,22 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.start-btn{
+  background-color: #4D5B9E;
+  font-size: 1.5rem;
+  padding: 1em;
+  min-width: 300px;
+  margin-top: 2em;
+}
+
 .questions{
-  background-color: red;
+  background-color: white;
   color: black;
 }
 
 .answers{
   display: flex;
-  background-color: #646cff;
+  background-color:white;
   color: white;
   flex-wrap: wrap;
   justify-content: center;
@@ -73,21 +82,23 @@ button:focus-visible {
 }
 
 .single-ans-btn{
-  background-color: #646cff;
-  color:white;
+  background-color: #c5c6dd;
+  font-weight: bold;
+  color:rgb(69, 83, 207);
   padding: 0.5em;
   border: white solid 2px;
-  border-radius: 0.2em;
+  border-radius: 0.6em;
   margin: 1em;
   cursor: pointer;
 }
 
 .single-ans-chosen-btn{
-  background-color: #D6DBF5;
+  background-color: #e0bb13;
   color:black;
+  font-weight: bold;
   padding: 0.5em;
   border: white solid 2px;
-  border-radius: 0.2em;
+  border-radius: 0.6em;
   margin: 1em;
   user-select: none;
   cursor: none;
@@ -95,26 +106,28 @@ button:focus-visible {
 
 
 .check-answers-btn{
-  background-color: aqua;
-  color: #4D5B9E;
+  background-color: #4D5B9E;
+  width: 30vw;
+  color: aqua;
   font-size: 1.4rem;
   font-weight: 600;
   padding: 0.5em;
-  margin: 2em;
-  border:solid white 2px;
-  border-radius: 0.3em;
+  margin: auto;
+  margin-top: 3em;
+  border:solid rgb(95, 205, 224) 4px;
+  border-radius: 0.6em;
+  
 }
 
 .check-answers-btn:hover{
-
   box-shadow:rgb(2, 138, 138) 0 0 8px inset ;
-  border:solid rgba(255, 255, 255, 0.445) 2px;
+  border:solid rgba(255, 255, 255, 0.445) 4px;
   cursor: pointer;
   color: #1a1a1a;
 }
 
 .quiz{
-  background-color:#e6219a;
+  background-color:white;
 }
 
 .modal{
@@ -127,8 +140,8 @@ button:focus-visible {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  width: 500px;
-  height: 250px;
+  max-width: 500px;
+  height: fit-content;
 
 }
 
@@ -139,15 +152,56 @@ button:focus-visible {
 ol{
   display: flex;
   flex-wrap: wrap;
+  text-align: center;
+  padding: 1em;
   gap: 2em;
+  background-color:white;
+}
+
+.corect, .incorect{
+color:black;
+padding: 0.5em;
+border-radius: 0.5em;
 }
 
 .corect{
-  color:green;
+  background-color: green;
 }
 
 .incorect{
-  color:red;
+  background-color: red;
+}
+
+.blob1, .blob2{
+  width: 30vw;
+  height: 30vh;
+}
+
+.blob1{
+  background: linear-gradient(90deg, rgba(194,68,198,1) 0%, rgba(70,211,252,1) 100%);
+  overflow: hidden;
+  border-radius:43% 57% 70% 30% / 50% 40% 60% 50% ;
+  right: 0;
+  margin-left: auto;
+  transform: translateX(15vw) translateY(-5vh);
+}
+
+
+
+.blob2{
+  background: linear-gradient(90deg, rgba(70,211,252,1) 0%, rgba(194,68,198,1) 100%);
+  overflow: hidden;
+  border-radius:55% 30% 60% 50% / 43% 57% 70% 20% ;
+  left: 0;
+  margin-right: auto;
+  transform: translateX(-15vw) translateY(10vh);
+}
+
+@media (max-width: 867px){
+  .blob1, .blob2{
+    width: 20vw;
+    height: 20vh;
+  }
 }
 
 @media (prefers-color-scheme: light) {
@@ -161,4 +215,5 @@ ol{
   button {
     background-color: #f9f9f9;
   }
+
 }

@@ -17,6 +17,8 @@ let res = 0
 function App() {
 
 
+  
+
 // const [clicked, setClicked] = useState("")
   const [rounds, setRounds] = useState(1)
   const [rend, setRend] = useState(false)
@@ -42,6 +44,7 @@ function App() {
 
 
 function sortQuestions(data){
+  checkedAnswers = []
   let testArr = []
   let test = []
   test = data
@@ -49,10 +52,15 @@ function sortQuestions(data){
   testArr = test.map((item) => {
    rowIndex ++
    let indNum = item.incorrect_answers.length
-    let rand = Math.floor(Math.random()*indNum)
+   console.log(indNum)
+    let rand = indNum>2?Math.floor(Math.random()*2) + Math.floor(Math.random()*indNum):Math.floor(Math.random()*indNum)
+    console.log("rand = " + rand)
     let addCorrect = item.incorrect_answers
+   
     addCorrect.splice(rand,0,item.correct_answer)
+   
     correctAnswersIndex.push(rowIndex+"-"+rand)
+    
 
     return {
       ...item,
@@ -92,7 +100,7 @@ function handleClick(e){
 } else {  
    rows.push(r)
   checkedAnswers.push(checked)
-console.log(correctAnswersIndex)
+
 }
 setRend(old => !old)
 }
@@ -102,7 +110,7 @@ function handleScore(){
 score = []
  
   for (let i = 0; i < 10; i++){
-    checkedAnswers.find(element => element == correctAnswersIndex[i])?score.push(true):score.push(false)
+    checkedAnswers.find(element => element === correctAnswersIndex[i])?score.push(true):score.push(false)
   }
 
   modal = true
@@ -113,7 +121,7 @@ score.map((it) => {
 })
 
   setRend(old => !old)
-
+console.log(score)
  console.log(res)
 }
 
@@ -129,6 +137,7 @@ function handleRounds(){
   checkedAnswers = []
   rows = []
   score = []
+  correctAnswersIndex = []
 }
 
 
@@ -137,6 +146,7 @@ function handleRounds(){
   return (
   
     <div className='app'>
+      <div className='blob1'></div>
     <div id="modal" className={modal?"modal":"invisible"}>
       <h2>Results</h2>
 <ol>
@@ -165,6 +175,7 @@ function handleRounds(){
       
      {start && (<div className='check-answers-btn' onClick={handleScore}>Check answers</div>) }
 
+     <div className='blob2'></div>
     </div>
   )
 }
