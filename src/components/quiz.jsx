@@ -1,15 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 import {decode} from 'html-entities'
 
 
 export default function Quiz(props){
-// console.log("props from quiz " + props.answers)
+
 let checked = props.checked
 let correctArr = props.correct
 
-
-console.log("checked - "+checked)
-console.log("correctArr - " + correctArr)
 
 
 function disp(elementId){
@@ -25,7 +22,7 @@ if (props.modal) {
 
 
 function dane(){ 
-    
+    //maps over incroect answers and get's question  
     let num = 0 
     let a = props.answers
     let q = a.map(item => {

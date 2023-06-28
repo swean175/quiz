@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Start from './components/start'
 import Quiz from './components/quiz'
-import {decode} from 'html-entities'
 import './App.css'
 
 
@@ -17,21 +16,15 @@ let res = 0
 function App() {
 
 
-  
-
-// const [clicked, setClicked] = useState("")
   const [rounds, setRounds] = useState(1)
   const [rend, setRend] = useState(false)
    const [start, setStart] = useState(false)
    const [questions, setQuestions] = useState([])
-
- 
   let quizData
 
-// let pytania = useRef([{qestion:"pyt1", incorrect_answers:["cos1", "cos2", "cos3"], id:"1", isHeld:false},{qestion:"pyt2", incorrect_answers:["cos1", "cos2", "cos3"], id:"2", isHeld:false},{qestion:"pyt3", incorrect_answers:["cos1", "cos2", "cos3"], id:"3", isHeld:false},{qestion:"pyt4", incorrect_answers:["cos1", "cos2", "cos3"], id:"4", isHeld:false},{qestion:"pyt5", incorrect_answers:["cos1", "cos2", "cos3"], id:"5", isHeld:false}])
 
 
-
+//strarts fetching data on rounds state change 
  useEffect(()=>{
  fetch ('https://opentdb.com/api.php?amount=10')
     .then ((res)=>res.json())
@@ -52,15 +45,15 @@ function sortQuestions(data){
   testArr = test.map((item) => {
    rowIndex ++
    let indNum = item.incorrect_answers.length
-   console.log(indNum)
+   
     let rand = indNum>2?Math.floor(Math.random()*2) + Math.floor(Math.random()*indNum):Math.floor(Math.random()*indNum)
-    console.log("rand = " + rand)
+  
     let addCorrect = item.incorrect_answers
    
     addCorrect.splice(rand,0,item.correct_answer)
    
     correctAnswersIndex.push(rowIndex+"-"+rand)
-    
+    // maps over request, mix incorrect answers with correct and renembers index of correct
 
     return {
       ...item,
@@ -83,7 +76,7 @@ quizData = questions.map(que =>
    checked={checkedAnswers}
    correct={correctAnswersIndex}
    modal={modal}
-  //  clicked={clicked}
+  // pass proprs to Quiz component
    setclicked={(e)=>handleClick(e)}
    />
  )) 
@@ -94,7 +87,7 @@ quizData = questions.map(que =>
 function handleClick(e){
   let checked = e.target.id
   let r = checked.charAt(0)
- 
+ // gets marked answer and compares it to correct indexes
   if (rows.find(it => it === r)){  
     console.log('not found')
 } else {  
@@ -114,15 +107,14 @@ score = []
   }
 
   modal = true
-
+// Counts score and shows modal witch score board
 score.map((it) => {
   if (it){res+=1}
   else {res+=0}
 })
 
   setRend(old => !old)
-console.log(score)
- console.log(res)
+
 }
 
 
@@ -138,6 +130,7 @@ function handleRounds(){
   rows = []
   score = []
   correctAnswersIndex = []
+  // switches to next round
 }
 
 
