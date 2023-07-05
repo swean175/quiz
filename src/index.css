@@ -15,9 +15,6 @@
   -webkit-text-size-adjust: 100%;
 }
 
-
-
-
 a {
   font-weight: 500;
   color: #646cff;
@@ -68,13 +65,11 @@ button:focus-visible {
 }
 
 .questions{
-  background-color: white;
   color: black;
 }
 
 .answers{
   display: flex;
-  background-color:white;
   color: white;
   flex-wrap: wrap;
   justify-content: center;
