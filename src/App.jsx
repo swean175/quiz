@@ -155,7 +155,7 @@ function handleRounds(){
 <li className={score[9]?"corect":"incorect"}>{score[9]?"Correct":"Wrong"}</li>
 </ol>
 <h3>Your Score {res} / 10 </h3>
-<button type='button' onClick={handleRounds}> Next</button>
+<button type='button' onClick={handleRounds}>Next</button>
     </div>
 
         {start && (<h1 id="begin">Round {rounds} let's begin</h1>)}
