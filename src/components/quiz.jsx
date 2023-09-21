@@ -40,7 +40,7 @@ function dane(){
         <>
     
   <div className="questions"><h2>
- {"#"+(props.id+1)+" "+decode(props.question)}</h2>
+ {"#"+(props.id+1)+" 🤔 "+decode(props.question)}</h2>
  </div>
  <div className="answers">
   {q}

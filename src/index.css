@@ -37,6 +37,10 @@ h1 {
   line-height: 1.1;
 }
 
+#begin>span{
+  color: rgb(60, 119, 165);
+}
+
 button {
   border-radius: 2em;
   border: 1px solid transparent;
@@ -66,6 +70,12 @@ button:focus-visible {
 
 .questions{
   color: black;
+  text-align: left;
+  margin-left: 0.5em;
+}
+
+.questions>h2{
+padding-top: 0.5em;
 }
 
 .answers{

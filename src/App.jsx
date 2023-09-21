@@ -100,19 +100,21 @@ setRend(old => !old)
 
 
 function handleScore(){
-score = []
- 
-  for (let i = 0; i < 10; i++){
-    checkedAnswers.find(element => element === correctAnswersIndex[i])?score.push(true):score.push(false)
-  }
+  if (checkedAnswers.length !== 10){alert("Choose all answers!!")}
+else {
+    score = []
 
-  modal = true
-// Counts score and shows modal witch score board
-score.map((it) => {
-  if (it){res+=1}
-  else {res+=0}
-})
-
+    for (let i = 0; i < 10; i++){
+      checkedAnswers.find(element => element === correctAnswersIndex[i])?score.push(true):score.push(false)
+    }
+  
+    modal = true
+  // Counts score and shows modal witch score board
+  score.map((it) => {
+    if (it){res+=1}
+    else {res+=0}
+  })
+}
   setRend(old => !old)
 
 }
@@ -158,7 +160,7 @@ function handleRounds(){
 <button type='button' onClick={handleRounds}>Next</button>
     </div>
 
-        {start && (<h1 id="begin">Round {rounds} let's begin</h1>)}
+        {start && (<h1 id="begin">Round <span>{rounds}</span> let's begin</h1>)}
      { start && quizData }
        {!start && <Start 
        start={start}
@@ -166,7 +168,7 @@ function handleRounds(){
        setstart={()=>setStart(true)}
        />}
       
-     {start && (<div className='check-answers-btn' onClick={handleScore}>Check answers</div>) }
+     { start &&(<div className='check-answers-btn' onClick={handleScore}>Check answers</div>) }
 
      <div className='blob2'></div>
     </div>
